@@ -1,0 +1,17 @@
+{
+    "contents" : "\n# This is the user-interface definition of a Shiny web application.\n# You can find out more about building applications with Shiny here:\n\n#connect libraries required\nif(!require(shiny)){\n  library(shiny)  \n}\nif(!require(shinyjs)){\n  library(shinyjs)  \n}\nif(!require(shinyBS)){\n  library(shinyBS)\n}\n\n#funaction to create multyline textareas in shiny\ntextAreaInput <- function(inputID, label, value=\"\", rows=10, columns=80) {\n  HTML(paste0('<div class=\"form-group shiny-input-container\">\n              <label for=\"', inputID, '\">', label,'</label>\n              <textarea id=\"', inputID, '\" rows=\"', rows,'\" cols=\"', \n              columns,'\">', value, '</textarea></div>'))\n}\n\nshinyUI(fluidPage(useShinyjs(),\n\n  titlePanel(\"Model testing platform\"),\n  navbarPage(\"model_platform\",\n             tabPanel(\"Settings\",\n                      fluidRow(column(2,\n                                       sliderInput(\"predictors\", \"Qty of predictors selected\", min=1, max=100, 1)\n                                      ,textInput(\"observations\", \"Qty of observations\", value=100, placeholder = \"Enter the number of observations\")\n                                      ,selectInput(\"y_dependable\",\"Select predictor as Y\",choices = c(\"V1\"),width=100)\n                                      ,selectInput(\"models\", \"Model type selected\"\n                                                   , choices = c(   \"binomial\"\n                                                                   ,\"gaussian\"\n                                                                   ,\"poisson\"\n                                                                   ,\"quasibinomial\"\n                                                                   ,\"quasipoisson\"\n                                                                 )\n                                                  )\n                                      ,textAreaInput(\"summary\",\"Parameters to model\",rows=4, columns=40)\n                                      \n                                      ,h5(strong(\"Performance,seconds\"))\n                                      ,verbatimTextOutput(\"performance\")\n                                      ,actionButton(\"go_button\", \"Run model calculations!\")\n                                     ),\n                               \n                               column(4,\n                                       h5(strong(\"Model summary\"))\n                                      ,verbatimTextOutput(\"wide_summary\")\n                                      ),\n                               column(6,\n                                      h5(strong(\"Tool description\"))\n                                      ,verbatimTextOutput(\"help\")\n                               ) \n                               \n                              )\n                     )\n  \n  \n            )\n      )\n)",
+    "created" : 1463991565685.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1397751421",
+    "id" : "AEB15479",
+    "lastKnownWriteTime" : 1464017828,
+    "path" : "D:/Demyd/Personal/Coursera/Developing_Data_Products/project/project_ddp/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
